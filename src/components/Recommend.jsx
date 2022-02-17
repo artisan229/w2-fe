@@ -12,7 +12,7 @@ const CircleContainer = styled.div`
     justify-content: center;
 `;
 
-const Circle = styled.div`
+const Circle = styled.img`
     width: 200px;
     height: 200px;
     background: white;
@@ -32,10 +32,10 @@ function Recommend() {
         <RecommendContainer>
             <h4>오늘의 추천 카테고리</h4>
             <CircleContainer>
-                <Circle>극 영화</Circle>
-                <Circle>다큐멘터리</Circle>
-                <Circle>로맨스</Circle>
-                <Circle>시간여행</Circle>
+                <Circle />
+                <Circle />
+                <Circle />
+                <Circle />
             </CircleContainer>
         </RecommendContainer>
     );
