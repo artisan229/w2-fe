@@ -52,7 +52,7 @@ const Uploaded = styled.p`
     font-weight: 500;
 `;
 
-function Card() {
+function Card(props) {
     return(
         <CardStyle>
             <Poster />

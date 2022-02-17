@@ -3,6 +3,7 @@ import { IconContext } from "react-icons/lib";
 import { useState } from 'react';
 import Navbar from "../components/Navbar";
 import styled from 'styled-components';
+import Card from '../components/ui/Card';
 
 const MyPageContainer = styled.div`
     background: black;
@@ -21,6 +22,11 @@ const TabBtn = styled.button`
     &:hover {
         cursor: pointer;
     }
+`;
+
+const TabDetail = styled.div`
+    display: flex;
+    text-align: start;
 `;
 
 function MyPage() {
@@ -60,7 +66,14 @@ function MyPage() {
 }
 
 function Liked() {
-    return <p>좋아요 누른 작품</p>
+    return (
+        <TabDetail>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+        </TabDetail>
+    );
 }
 
 function Funding() {
