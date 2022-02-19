@@ -83,7 +83,7 @@ function Navbar() {
           <Link to={"/upload"}><Menu>작품 업로드</Menu></Link>
           <Link to={"/mypage"}><Menu>마이페이지</Menu></Link>
           <Link to={"/support"}><Menu>고객센터</Menu></Link>
-          <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>we will go hollywood</a>
+          <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
         </NavbarCenter>
         <NavbarRight>
           <NavbarLogin>

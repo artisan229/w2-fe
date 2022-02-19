@@ -10,10 +10,10 @@ const CardContainer = styled.div`
 function NewContents() {
     return (
         <CardContainer>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card width={'220'} height={'430'} />
+            <Card width={'220'} height={'430'} />
+            <Card width={'220'} height={'430'} />
+            <Card width={'220'} height={'430'} />
         </CardContainer>
     );
 }

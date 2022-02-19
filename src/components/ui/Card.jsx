@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const CardStyle = styled.div`
-    width: 220px;
-    height: 430px;
+    width: ${props => props.width}px;
+    height: ${props => props.height}px;
     margin: 30px;
     &:hover {
         cursor: pointer;
@@ -10,8 +10,8 @@ const CardStyle = styled.div`
 `;
 
 const Poster = styled.img`
-    width: 220px;
-    height: 310px;
+    width: ${props => props.width}px;
+    height: ${props => props.height}px;
     background: #eee;
     &:hover {
         cursor: pointer;
@@ -54,8 +54,8 @@ const Uploaded = styled.p`
 
 function Card(props) {
     return(
-        <CardStyle>
-            <Poster />
+        <CardStyle width={props.width} height={props.height}>
+            <Poster width={props.width} height={props.height-120}/>
             <Title>용순</Title>
             <Info>이너의 클래스</Info>
             <Wrap>
