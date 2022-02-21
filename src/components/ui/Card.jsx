@@ -53,15 +53,21 @@ const Uploaded = styled.p`
 `;
 
 function Card(props) {
-    return(
+    return (
         <CardStyle width={props.width} height={props.height}>
-            <Poster width={props.width} height={props.height-120}/>
-            <Title>용순</Title>
-            <Info>이너의 클래스</Info>
-            <Wrap>
-                <Tag>로맨스, 성장</Tag>
-                <Uploaded>1일전</Uploaded>
-            </Wrap>
+            {
+                props.onlyPoster === true
+                    ? <Poster width={props.width} height={props.height} />
+                    : <>
+                        <Poster width={props.width} height={props.height - 120} />
+                        <Title>용순</Title>
+                        <Info>이너의 클래스</Info>
+                        <Wrap>
+                            <Tag>로맨스, 성장</Tag>
+                            <Uploaded>1일전</Uploaded>
+                        </Wrap>
+                    </>
+            }
         </CardStyle>
     );
 }

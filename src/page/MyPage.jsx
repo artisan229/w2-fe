@@ -2,8 +2,8 @@ import { IoPersonCircleSharp } from 'react-icons/io5';
 import { IconContext } from "react-icons/lib";
 import { useState } from 'react';
 import Navbar from "../components/Navbar";
-import styled from 'styled-components';
 import Card from '../components/ui/Card';
+import styled from 'styled-components';
 
 const MyPageContainer = styled.div`
     text-align: center;
