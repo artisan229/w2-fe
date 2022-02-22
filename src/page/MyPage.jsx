@@ -67,6 +67,7 @@ function MyPage() {
     const [isClicked, setIsClicked] = useState([true, false, false, false, false]);
 
     const isDirector = true;
+
     const mytab = {
         0: <Liked />,
         1: <Funding />,
