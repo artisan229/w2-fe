@@ -3,12 +3,12 @@ import Main from '../components/ui/Main';
 import Search from '../components/Search';
 import ReleaseSoon from '../components/ReleaseSoon';
 import Recommend from '../components/Recommend';
-import styled from 'styled-components';
 import NewContents from '../components/NewContents';
 import Magazine from '../components/Magazine';
 import Imminent from '../components/Imminent';
+import styled from 'styled-components';
 
-const ChallengeContainer = styled.div`
+const BasicContainer = styled.div`
   background: black;
 `;
 
@@ -36,7 +36,7 @@ const IndexTab = styled.div`
 
 function Challenge() {
   return (
-    <ChallengeContainer>
+    <BasicContainer>
       <Navbar />
       <Main />
       <Search />
@@ -46,7 +46,7 @@ function Challenge() {
       <Recommend />
       <Magazine />
       <Imminent />
-    </ChallengeContainer>
+    </BasicContainer>
   );
 }
 
