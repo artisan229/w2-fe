@@ -1,11 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { createContext, useEffect, useState } from "react";
 
-const AppStateContext = React.createContext();
+export const AppStateContext = createContext()
 
-function AppStateProvider() {
+function AppStateProvider(props) {
+
+    const [movie, setMovie] = useState();
+
+    useEffect(() => {
+        axios.get("http://localhost:8001/")
+            .then((res) => setMovie(res.data))
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
-        <AppStateContext.Provider>
-            
+        <AppStateContext.Provider value={movie}>
+            {props.children}
         </AppStateContext.Provider>
     );
 }

@@ -1,18 +1,15 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const CardStyle = styled.div`
     width: ${props => props.width}px;
     height: ${props => props.height}px;
+    border: 1px solid white;
     margin: 30px;
-    &:hover {
-        cursor: pointer;
-    }
 `;
 
 const Poster = styled.img`
-    width: ${props => props.width}px;
-    height: ${props => props.height}px;
-    background: #eee;
+    width: 100%;
     &:hover {
         cursor: pointer;
         opacity: 0.6;
@@ -54,17 +51,19 @@ const Uploaded = styled.p`
 
 function Card(props) {
     return (
-        <CardStyle width={props.width} height={props.height}>
+        <CardStyle width={props.width} height={props.height} >
             {
                 props.onlyPoster === true
                     ? <Poster width={props.width} height={props.height} />
                     : <>
-                        <Poster width={props.width} height={props.height - 120} />
-                        <Title>용순</Title>
-                        <Info>이너의 클래스</Info>
+                        <Link to={`/watch/${props.id}`}>
+                            <Poster src={props.thumbnail} />
+                        </Link>
+                        <Title>{props.title}</Title>
+                        <Info>{props.director}</Info>
                         <Wrap>
-                            <Tag>로맨스, 성장</Tag>
-                            <Uploaded>1일전</Uploaded>
+                            <Tag>{props.tag}</Tag>
+                            <Uploaded>{props.date}</Uploaded>
                         </Wrap>
                     </>
             }

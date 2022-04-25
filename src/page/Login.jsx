@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
-import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LoginContainer = styled.div`
     text-align: center;
@@ -9,11 +9,20 @@ const LoginContainer = styled.div`
     }
 `;
 
+const LoginBtn = styled.img`
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
 function Login() {
+
     return (
         <LoginContainer>
             <Navbar />
-            <Link to={"/"}><img src="kakao_login_large_wide.png" alt="kakao_login" /></Link>
+            <a target="_self" rel="noopener noreferrer" href={"http://localhost:8001/auth/kakao"}>
+                <LoginBtn src="kakao_login_large_wide.png" alt="kakao_login" />
+            </a>
         </LoginContainer>
     );
 }

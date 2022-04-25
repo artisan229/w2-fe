@@ -19,6 +19,7 @@ function Magazine() {
     const settings = {
         dots: true,
         infinite: true,
+        arrows: false,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,

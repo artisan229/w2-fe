@@ -1,12 +1,10 @@
-import styled from "styled-components";
-
-const SupportContainer = styled.div`
-    
-`;
+import Navbar from "../components/Navbar";
 
 function Support() {
     return (
         <>
+        <Navbar/>
+        고객센터 페이지
         </>
     );
 }
