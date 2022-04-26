@@ -86,9 +86,12 @@ function Navbar() {
           <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
         </NavbarCenter>
         <NavbarRight>
+          {
+            // 로그인 여부 확인 후 분기처리
+          }
           <NavbarLogin>
             <Link to={"/login"}><p>로그인</p></Link>
-            <Link to={"/signup"}><p>회원가입</p></Link>
+            <Link to={"/login"}><p>회원가입</p></Link>
           </NavbarLogin>
         </NavbarRight>
       </IconContext.Provider>

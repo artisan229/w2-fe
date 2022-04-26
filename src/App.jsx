@@ -8,7 +8,6 @@ import Upload from './page/Upload';
 import MyPage from './page/MyPage';
 import Support from './page/Support';
 import Login from './page/Login';
-import SignUp from './page/SignUp';
 import AppStateProvider from './provider/AppStateProvider';
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/support" element={<Support />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </BrowserRouter>
       </AppStateProvider>
