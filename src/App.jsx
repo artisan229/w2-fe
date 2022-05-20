@@ -7,7 +7,6 @@ import Category from './page/Category';
 import Upload from './page/Upload';
 import MyPage from './page/MyPage';
 import Support from './page/Support';
-import Login from './page/Login';
 import AppStateProvider from './provider/AppStateProvider';
 
 function App() {
@@ -19,13 +18,12 @@ function App() {
             <Route path="/" element={<Basic />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/watch">
-              <Route path=":id" element={<Watch />}/>
+              <Route path=":id" element={<Watch />} />
             </Route>
             <Route path="/category" element={<Category />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/support" element={<Support />} />
-            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </AppStateProvider>

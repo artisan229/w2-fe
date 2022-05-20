@@ -1,6 +1,7 @@
 import { IconContext } from 'react-icons/lib';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NavbarLogin from './ui/NavbarLogin';
 
 const NavbarContainer = styled.div`
   position: sticky;
@@ -42,17 +43,17 @@ const Logo = styled.img`
   vertical-align: middle;
 `;
 
-const NavbarCenter = styled.div`
-  display: flex;
-  align-items: center;
-  p {
-    margin: 10px;
-  }
-`;
+// const NavbarCenter = styled.div`
+//   display: flex;
+//   align-items: center;
+//   p {
+//     margin: 10px;
+//   }
+// `;
 
-const Menu = styled.p`
-  color: ${props => props.color};
-`;
+// const Menu = styled.p`
+//   color: ${props => props.color};
+// `;
 
 const NavbarRight = styled.div`
   display: flex;
@@ -64,12 +65,6 @@ const NavbarRight = styled.div`
   }
 `;
 
-const NavbarLogin = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-`;
-
 function Navbar() {
   return (
     <NavbarContainer>
@@ -77,22 +72,16 @@ function Navbar() {
         <NavbarLeft>
           <Link to={"/"}><Logo src='willywood_white.png' /></Link>
         </NavbarLeft>
-        <NavbarCenter>
+        {/* <NavbarCenter>
           <Link to={"/premium"}><Menu color='#f2e056'>프리미엄관</Menu></Link>
           <Link to={"/category"}><Menu>카테고리</Menu></Link>
           <Link to={"/upload"}><Menu>작품 업로드</Menu></Link>
           <Link to={"/mypage"}><Menu>마이페이지</Menu></Link>
           <Link to={"/support"}><Menu>고객센터</Menu></Link>
           <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
-        </NavbarCenter>
+        </NavbarCenter> */}
         <NavbarRight>
-          {
-            // 로그인 여부 확인 후 분기처리
-          }
-          <NavbarLogin>
-            <Link to={"/login"}><p>로그인</p></Link>
-            <Link to={"/login"}><p>회원가입</p></Link>
-          </NavbarLogin>
+          <NavbarLogin/>
         </NavbarRight>
       </IconContext.Provider>
     </NavbarContainer>

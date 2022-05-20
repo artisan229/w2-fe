@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IconContext } from "react-icons/lib";
+import { useContext, useState } from "react";
+import { AppStateContext } from "../provider/AppStateProvider";
+import Card from "./ui/Card";
 
 const SearchContainer = styled.div`
     display: flex;
@@ -35,13 +38,25 @@ const SubmitBtn = styled.button`
 
 
 function Search() {
+    const context = useContext(AppStateContext);
+    const [search, setSearch] = useState('');
     return (
         <SearchContainer>
-            <SearchBar placeholder="제목,감독,장르,# 등을 검색해보세요." />
+            <SearchBar placeholder="제목,감독,장르,# 등을 검색해보세요."
+                onChange={(e) => { setSearch(e.target.value) }} />
+            {
+                context[0] && context[0].map((movie, idx) => {
+                    if (movie.title.includes(search) || movie.director.includes(search)) {
+                        return <Card key={idx} width={'330'} height={'270'} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.id} />
+                    } else {
+                        return null;
+                    }
+                    })
+            }
             <IconContext.Provider value={{ color: 'white', size: '20px' }}>
-            <SubmitBtn>
-                <AiOutlineSearch />
-            </SubmitBtn>
+                <SubmitBtn>
+                    <AiOutlineSearch />
+                </SubmitBtn>
             </IconContext.Provider>
         </SearchContainer>
     );

@@ -1,24 +1,23 @@
-import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import axios from 'axios';
 
 export const AppStateContext = createContext()
 
 function AppStateProvider(props) {
 
-    const [movie, setMovie] = useState();
+    const [movie, setMovie] = useState([]);
+    const [loginResult] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:8001/")
-            .then((res) => {
-                console.log(res.data)
-            })
+        axios.get("http://localhost:8001/api/movie")
+            .then((res) => setMovie(res.data))
             .catch((err) => console.log(err))
-    }, [])
+    })
 
     return (
-        <AppStateContext.Provider value={movie}>
+        <AppStateContext.Provider value={[movie, loginResult]} >
             {props.children}
-        </AppStateContext.Provider>
+        </AppStateContext.Provider >
     );
 }
 
