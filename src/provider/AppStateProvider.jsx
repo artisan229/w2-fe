@@ -12,7 +12,7 @@ function AppStateProvider(props) {
         axios.get("http://localhost:8001/api/movie")
             .then((res) => setMovie(res.data))
             .catch((err) => console.log(err))
-    })
+    }, [])
 
     return (
         <AppStateContext.Provider value={[movie, loginResult]} >

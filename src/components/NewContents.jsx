@@ -26,7 +26,7 @@ function Contents() {
         <CardContainer {...settings}>
             {
                 context[0] && context[0].map((movie, idx) => {
-                    return <Card key={idx} width={'330'} height={'270'} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.id} />
+                    return <Card key={idx} width={'330'} height={'270'} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
                 })
             }
         </CardContainer>
