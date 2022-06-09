@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 const CardStyle = styled.div`
-    width: ${props => props.width}px;
-    height: ${props => props.height}px;
-    border: 1px solid white;
+    width: 200px;
+    height: 390px;
     margin: 30px;
 `;
 
@@ -14,6 +15,10 @@ const Poster = styled.img`
         cursor: pointer;
         opacity: 0.6;
     }
+`;
+
+const InfoWrap = styled.div`
+    
 `;
 
 const Title = styled.p`
@@ -50,23 +55,29 @@ const Uploaded = styled.p`
 `;
 
 function Card(props) {
+
+    const loginState = useSelector((state) => state.login);
+    const formatDate = moment(props.date).format('YYYY년 M월 D일 개봉');
+
     return (
-        <CardStyle width={props.width} height={props.height} >
-            {
-                props.onlyPoster === true
-                    ? <Poster width={props.width} height={props.height} />
-                    : <>
-                        <Link to={`/watch/${props.id}`}>
+        <CardStyle>
+            <>
+                {
+                    loginState === true
+                        ? <Link to={`/watch/${props.id}`}>
                             <Poster src={props.thumbnail} />
                         </Link>
-                        <Title>{props.title}</Title>
-                        <Info>{props.director}</Info>
-                        <Wrap>
-                            <Tag>{props.tag}</Tag>
-                            <Uploaded>{props.date}</Uploaded>
-                        </Wrap>
-                    </>
-            }
+                        : <Poster src={props.thumbnail} />
+                }
+                <InfoWrap>
+                    <Title>{props.title}</Title>
+                    <Info>{props.director}</Info>
+                    <Wrap>
+                        <Tag>{props.tag}</Tag>
+                        <Uploaded>{formatDate}</Uploaded>
+                    </Wrap>
+                </InfoWrap>
+            </>
         </CardStyle>
     );
 }
