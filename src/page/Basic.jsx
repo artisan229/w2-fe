@@ -1,8 +1,9 @@
 import Navbar from '../components/Navbar';
 import Main from '../components/ui/Main';
 import Search from '../components/Search';
-import Contents from '../components/NewContents';
+import Tab from '../components/Tab';
 import styled from 'styled-components';
+import BasicProvider from '../provider/BasicProvider';
 
 const BasicContainer = styled.div`
   background: black;
@@ -11,10 +12,12 @@ const BasicContainer = styled.div`
 function Challenge() {
   return (
     <BasicContainer>
-      <Navbar />
-      <Main />
-      <Search />
-      <Contents />
+      <BasicProvider>
+        <Navbar />
+        <Main />
+        <Search />
+        <Tab />
+      </BasicProvider>
     </BasicContainer>
   );
 }

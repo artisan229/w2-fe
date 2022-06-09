@@ -7,12 +7,12 @@ import Category from './page/Category';
 import Upload from './page/Upload';
 import MyPage from './page/MyPage';
 import Support from './page/Support';
-import AppStateProvider from './provider/AppStateProvider';
+import PlayerProvider from './provider/PlayerProvider';
 
 function App() {
   return (
     <>
-      <AppStateProvider>
+      <PlayerProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Basic />} />
@@ -26,7 +26,7 @@ function App() {
             <Route path="/support" element={<Support />} />
           </Routes>
         </BrowserRouter>
-      </AppStateProvider>
+      </PlayerProvider>
     </>
   );
 }

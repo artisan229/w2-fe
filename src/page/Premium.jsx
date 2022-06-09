@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Main from "../components/ui/Main";
 import Search from "../components/Search";
-import NewContents from "../components/NewContents";
+import NewContents from "../components/Contents";
 import ReleaseSoon from "../components/ReleaseSoon";
 import Recommend from "../components/Recommend";
 import Magazine from "../components/Magazine";

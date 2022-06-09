@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeState } from '../../store';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -35,8 +37,9 @@ const Profile = styled.div`
 `;
 
 function NavbarLogin() {
-    const [loginState, setLoginState] = useState(false);
+    const loginState = useSelector((state) => state.login);
     const [user, setUser] = useState({});
+    const dispatch = useDispatch();
 
     function KakaoUser() {
         window.Kakao.API.request({
@@ -76,7 +79,7 @@ function NavbarLogin() {
                     window.Kakao.Auth.setAccessToken(response.access_token);
                     console.log(`is set?: ${window.Kakao.Auth.getAccessToken()}`);
                     KakaoUser();
-                    setLoginState(true);
+                    dispatch(changeState());
                 },
                 fail: function (error) {
                     console.log(error);
@@ -88,12 +91,11 @@ function NavbarLogin() {
     function KakaoLogout() {
         if (!window.Kakao.Auth.getAccessToken()) {
             console.log('Not logged in.');
-            setLoginState(false);
             return;
         }
         window.Kakao.Auth.logout(() => {
             console.log(window.Kakao.Auth.getAccessToken());
-            setLoginState(false);
+            dispatch(changeState());
             window.location.reload();
         });
     }

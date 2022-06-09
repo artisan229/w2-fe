@@ -1,4 +1,3 @@
-import { IconContext } from 'react-icons/lib';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLogin from './ui/NavbarLogin';
@@ -68,11 +67,10 @@ const NavbarRight = styled.div`
 function Navbar() {
   return (
     <NavbarContainer>
-      <IconContext.Provider value={{ color: 'white', size: '30px' }}>
-        <NavbarLeft>
-          <Link to={"/"}><Logo src='willywood_white.png' /></Link>
-        </NavbarLeft>
-        {/* <NavbarCenter>
+      <NavbarLeft>
+        <Link to={"/"}><Logo src='willywood_white.png' /></Link>
+      </NavbarLeft>
+      {/* <NavbarCenter>
           <Link to={"/premium"}><Menu color='#f2e056'>프리미엄관</Menu></Link>
           <Link to={"/category"}><Menu>카테고리</Menu></Link>
           <Link to={"/upload"}><Menu>작품 업로드</Menu></Link>
@@ -80,10 +78,9 @@ function Navbar() {
           <Link to={"/support"}><Menu>고객센터</Menu></Link>
           <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
         </NavbarCenter> */}
-        <NavbarRight>
-          <NavbarLogin/>
-        </NavbarRight>
-      </IconContext.Provider>
+      <NavbarRight>
+        <NavbarLogin />
+      </NavbarRight>
     </NavbarContainer>
   );
 }
