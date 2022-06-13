@@ -19,21 +19,34 @@ const Kakao = styled.button`
 `;
 
 const Profile = styled.div`
+    height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
     display: flex;
-    p {
-        margin-left: 10px;
+    span {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 10px;
         color: white;
-        align-items: center;
-        vertical-align: middle;
     }
     img {
+        margin-top: auto;
+        margin-bottom: auto;
         width: 40px;
-        height: auto;
+        height: 40px;
         border-radius: 25px;
         &:hover {
             cursor: pointer;
         }
     }
+`;
+
+const Logout = styled.button`
+    color: white;
+    background: yellow;
+    align-items: center;
+    padding: 10px;
+    font-size: medium;
 `;
 
 function NavbarLogin() {
@@ -104,10 +117,13 @@ function NavbarLogin() {
         <LoginContainer>
             {
                 loginState
-                    ? <Profile onClick={KakaoLogout}>
-                        <p>{user.nick}님 어서오세요</p>
-                        <img src={user.image} alt='profile_image' />
-                    </Profile>
+                    ? <>
+                        <Profile>
+                            <span>{user.nick}님 어서오세요</span>
+                            {/* <img src={'profile.jpg'} alt='profile_image' /> */}
+                        </Profile>
+                        <Logout onClick={KakaoLogout}>로그아웃</Logout>
+                    </>
                     : <Kakao onClick={KakaoLogin}>로그인</Kakao>
             }
         </LoginContainer>

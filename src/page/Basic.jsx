@@ -4,6 +4,7 @@ import Search from '../components/Search';
 import Tab from '../components/Tab';
 import styled from 'styled-components';
 import BasicProvider from '../provider/BasicProvider';
+import Footer from '../components/Footer';
 
 const BasicContainer = styled.div`
   background: black;
@@ -17,6 +18,7 @@ function Challenge() {
         <Main />
         <Search />
         <Tab />
+        <Footer />
       </BasicProvider>
     </BasicContainer>
   );
