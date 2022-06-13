@@ -2,8 +2,14 @@ import Card from "./ui/Card";
 import styled from "styled-components";
 import { useContext } from 'react';
 import { BasicContext } from "../provider/BasicProvider";
+import NoneData from "./ui/NoneData";
 
-const CardContainer = styled.div`
+const ContentsContainer = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+`;
+
+const GridContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
@@ -14,21 +20,26 @@ const CardContainer = styled.div`
 
 function Contents(props) {
     const context = useContext(BasicContext);
-    const category = ['일상', '회사', '다큐멘터리', '로맨스'];
+    const result = context.filter(movie => movie.tag === props.type);
+
     return (
-        <CardContainer>
+        <ContentsContainer>
             {
-                props.typeNum === 0
-                ? context && context.map((movie, idx) => {
-                    return <Card key={idx} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
-                })
-                : context && context.map((movie, idx) => {
-                    return movie.tag === category[props.typeNum - 1]
-                    ? <Card key={idx} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
-                    : null
-                })
+                props.type !== '모든 영화' && result.length === 0
+                    ? <NoneData message={'해당 카테고리의 영화가 없습니다.'} />
+                    : <GridContainer>
+                        {
+                            props.type === '모든 영화'
+                                ? context && context.map((movie, idx) => {
+                                    return <Card key={idx} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
+                                })
+                                : result.map((movie, idx) => {
+                                    return <Card key={idx} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
+                                })
+                        }
+                    </GridContainer>
             }
-        </CardContainer>
+        </ContentsContainer>
     );
 }
 

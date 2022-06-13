@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Contents from './Contents';
 
 const TabContainer = styled.div`
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     hr {
-        width: 50%;
+        width: 53%;
+        height: 0;
     }
 `;
 
@@ -16,33 +17,60 @@ const TabRow = styled.div`
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    hr {
+        width: 100%;
+        height: 0;
+    }
 `;
 
 const TabButton = styled.button`
     background-color: black;
-    color: white;
+    color: ${(props) => props.color};
     font-size: large;
+    width: 20%;
+    border: none;
     &:hover {
+        color: white;
         cursor: pointer;
     }
 `;
 
 function Tab() {
-    const [tab, setTab] = useState(0);
+    const [tab, setTab] = useState('모든 영화');
+    const [flag, setFlag] = useState('모든 영화');
+    const category = ['모든 영화', '액션', '로맨스', '판타지', '회사', '모험', '재난', '스릴러', '공포', '청춘', '코미디', '가족', '드라마', '다큐멘터리', '일상'];
+
+    function changeFlag(src) {
+        setFlag(src);
+        setTab(src);
+    }
 
     return (
         <TabContainer>
-            <hr />
             <TabRow>
-                <TabButton onClick={() => setTab(0)}>모든 영화</TabButton>
-                <TabButton onClick={() => setTab(1)}>일상</TabButton>
-                <TabButton onClick={() => setTab(2)}>회사</TabButton>
-                <TabButton onClick={() => setTab(3)}>다큐멘터리</TabButton>
-                <TabButton onClick={() => setTab(4)}>로맨스</TabButton>
+                {
+                    category.map((src, idx) => {
+                        return (idx + 1) % 5 === 0
+                            ? flag === src
+                                ? <React.Fragment key={idx}>
+                                    <TabButton onClick={() => changeFlag(src)} color={'white'}>{src}</TabButton>
+                                    <hr />
+                                </React.Fragment>
+                                : <React.Fragment key={idx}>
+                                    <TabButton key={idx} onClick={() => changeFlag(src)} color={'grey'}>{src}</TabButton>
+                                    <hr />
+                                </React.Fragment>
+                            : flag === src
+                            ? <TabButton key={idx} onClick={() => changeFlag(src)} color={'white'}>{src}</TabButton>
+                            : <TabButton key={idx} onClick={() => changeFlag(src)} color={'grey'}>{src}</TabButton>
+                    })
+                }
             </TabRow>
-            <Contents typeNum={tab} />
+            <Contents type={tab} />
         </TabContainer>
     )
 }
