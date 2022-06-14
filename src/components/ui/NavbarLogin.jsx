@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeState } from '../../store';
+import { changeState, changeUser } from '../../store';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -32,9 +31,10 @@ const Profile = styled.div`
     img {
         margin-top: auto;
         margin-bottom: auto;
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         border-radius: 25px;
+        object-fit: cover;
         &:hover {
             cursor: pointer;
         }
@@ -51,7 +51,7 @@ const Logout = styled.button`
 
 function NavbarLogin() {
     const loginState = useSelector((state) => state.login);
-    const [user, setUser] = useState({});
+    const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     function KakaoUser() {
@@ -70,7 +70,9 @@ function NavbarLogin() {
         const id = resData.id;
         const email = resData.kakao_account.email;
         const nick = resData.kakao_account.profile.nickname;
+        const profile_img = resData.properties.profile_image;
         console.log(resData);
+        console.log(profile_img);
         let request = {
             snsId: id,
             nick,
@@ -80,8 +82,7 @@ function NavbarLogin() {
             .catch(function (error) {
                 console.log(error);
             });
-        request.image = resData.kakao_account.profile.profile_image_url;
-        setUser(request);
+        dispatch(changeUser({name: nick, email: email, profile_img: profile_img}));
     }
 
     function KakaoLogin() {
@@ -119,8 +120,8 @@ function NavbarLogin() {
                 loginState
                     ? <>
                         <Profile>
-                            <span>{user.nick}님 어서오세요</span>
-                            {/* <img src={'profile.jpg'} alt='profile_image' /> */}
+                            <span>{userState.value.name}님 어서오세요</span>
+                            {/* <img src={userState.value.profile_img} alt='profile_image' /> */}
                         </Profile>
                         <Logout onClick={KakaoLogout}>로그아웃</Logout>
                     </>
