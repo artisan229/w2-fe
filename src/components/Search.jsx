@@ -1,20 +1,12 @@
 import styled from "styled-components";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IconContext } from "react-icons/lib";
-import { useContext, useState } from "react";
-import { BasicContext } from "../provider/BasicProvider";
-import Card from "./ui/Card";
 
 const SearchContainer = styled.div`
     justify-content: center;
 `;
 
 const SearchBarContainer = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const ResultContainer = styled.div`
     display: flex;
     justify-content: center;
 `;
@@ -46,18 +38,16 @@ const SubmitBtn = styled.button`
 `;
 
 
-function Search() {
-    const context = useContext(BasicContext);
-    const [search, setSearch] = useState(null);
+function Search(props) {
     return (
         <SearchContainer>
             <SearchBarContainer>
                 <SearchBar placeholder="제목,감독,장르,# 등을 검색해보세요."
                     onChange={(e) => {
                         if (e.target.value === "" || e.target.value === " ") {
-                            setSearch(null);
+                            props.setSearch(null);
                         } else {
-                            setSearch(e.target.value)
+                            props.setSearch(e.target.value)
                         }
                     }} />
                 <IconContext.Provider value={{ color: 'white', size: '20px' }}>
@@ -66,15 +56,6 @@ function Search() {
                     </SubmitBtn>
                 </IconContext.Provider>
             </SearchBarContainer>
-            <ResultContainer>
-                {
-                    context && context.map((movie, idx) => {
-                        return movie.title.includes(search) || movie.director.includes(search)
-                            ? <Card key={idx} width={'200'} height={'auto'} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.id} />
-                            : null
-                    })
-                }
-            </ResultContainer>
         </SearchContainer>
     );
 }

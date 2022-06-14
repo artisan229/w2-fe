@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Search from './Search';
 import Contents from './Contents';
 
 const TabContainer = styled.div`
     width: 100%;
-    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     hr {
@@ -15,6 +15,7 @@ const TabContainer = styled.div`
 
 const TabRow = styled.div`
     width: 50%;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 40px;
@@ -34,6 +35,7 @@ const TabButton = styled.button`
     width: 20%;
     border: none;
     &:hover {
+        transition: all 0.3s;
         color: white;
         cursor: pointer;
     }
@@ -42,6 +44,7 @@ const TabButton = styled.button`
 function Tab() {
     const [tab, setTab] = useState('모든 영화');
     const [flag, setFlag] = useState('모든 영화');
+    const [search, setSearch] = useState(null);
     const category = ['모든 영화', '액션', '로맨스', '판타지', '회사', '모험', '재난', '스릴러', '공포', '청춘', '코미디', '가족', '드라마', '다큐멘터리', '일상'];
 
     function changeFlag(src) {
@@ -51,6 +54,7 @@ function Tab() {
 
     return (
         <TabContainer>
+            <Search type={tab} setSearch={setSearch}/>
             <TabRow>
                 {
                     category.map((src, idx) => {
@@ -70,7 +74,7 @@ function Tab() {
                     })
                 }
             </TabRow>
-            <Contents type={tab} />
+            <Contents type={tab} search={search} />
         </TabContainer>
     )
 }
