@@ -1,6 +1,5 @@
 import Navbar from '../components/Navbar';
 import Main from '../components/ui/Main';
-import Search from '../components/Search';
 import Tab from '../components/Tab';
 import styled from 'styled-components';
 import BasicProvider from '../provider/BasicProvider';
@@ -16,7 +15,6 @@ function Challenge() {
       <BasicProvider>
         <Navbar />
         <Main />
-        <Search />
         <Tab />
         <Footer />
       </BasicProvider>
