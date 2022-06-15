@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IconContext } from "react-icons/lib";
+import { useState } from "react";
 
 const SearchContainer = styled.div`
     justify-content: center;
@@ -39,20 +40,27 @@ const SubmitBtn = styled.button`
 
 
 function Search(props) {
+    const [query, setQuery] = useState(null);
     return (
         <SearchContainer>
             <SearchBarContainer>
-                <SearchBar placeholder="제목,감독,장르,# 등을 검색해보세요."
+                <SearchBar placeholder="제목, 감독을 검색해보세요"
                     onChange={(e) => {
                         if (e.target.value === "" || e.target.value === " ") {
+                            setQuery(null);
                             props.setSearch(null);
                         } else {
-                            props.setSearch(e.target.value)
+                            setQuery(e.target.value)
+                        }
+                    }}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            props.setSearch(query);
                         }
                     }} />
                 <IconContext.Provider value={{ color: 'white', size: '20px' }}>
                     <SubmitBtn>
-                        <AiOutlineSearch />
+                        <AiOutlineSearch onClick={() => props.setSearch(query)}/>
                     </SubmitBtn>
                 </IconContext.Provider>
             </SearchBarContainer>
