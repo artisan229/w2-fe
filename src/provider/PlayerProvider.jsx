@@ -8,9 +8,13 @@ function PlayerProvider(props) {
     const [movie, setMovie] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8001/api/movie")
-            .then((res) => setMovie(res.data))
-            .catch((err) => console.log(err))
+        process.env.NODE_ENV === 'production'
+            ? axios.get(REACT_APP_SERVER_HOST + "/api/movie")
+                .then((res) => setMovie(res.data))
+                .catch((err) => console.log(err))
+            : axios.get("http://localhost:8001/api/movie")
+                .then((res) => setMovie(res.data))
+                .catch((err) => console.log(err))
     }, [])
 
     return (

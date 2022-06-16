@@ -72,10 +72,10 @@ function Card(props) {
                 <InfoWrap>
                     <Title>{props.title}</Title>
                     <Info>{props.director}</Info>
-                    <Wrap>
-                        <Tag>{props.tag}</Tag>
+                    <Tag>{props.tag}</Tag>
+                    {/* <Wrap>
                         <Uploaded>{formatDate}</Uploaded>
-                    </Wrap>
+                    </Wrap> */}
                 </InfoWrap>
             </>
         </CardStyle>

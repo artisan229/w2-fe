@@ -71,18 +71,23 @@ function NavbarLogin() {
         const email = resData.kakao_account.email;
         const nick = resData.kakao_account.profile.nickname;
         const profile_img = resData.properties.profile_image;
-        console.log(resData);
-        console.log(profile_img);
+        // console.log(resData);
+        // console.log(profile_img);
         let request = {
             snsId: id,
             nick,
             email,
         };
-        axios.post("http://localhost:8001/auth/login", request)
-            .catch(function (error) {
-                console.log(error);
-            });
-        dispatch(changeUser({name: nick, email: email, profile_img: profile_img}));
+        process.env.NODE_ENV === 'production'
+            ? axios.post("http://localhost:8001/auth/login", request)
+                .catch(function (error) {
+                    console.log(error);
+                })
+            : axios.post(REACT_APP_SERVER_HOST + "/auth/login", request)
+                .catch(function (error) {
+                    console.log(error);
+                });
+        dispatch(changeUser({ name: nick, email: email, profile_img: profile_img }));
     }
 
     function KakaoLogin() {
@@ -91,7 +96,7 @@ function NavbarLogin() {
             window.Kakao.Auth.login({
                 success: function (response) {
                     window.Kakao.Auth.setAccessToken(response.access_token);
-                    console.log(`is set?: ${window.Kakao.Auth.getAccessToken()}`);
+                    // console.log(`is set?: ${window.Kakao.Auth.getAccessToken()}`);
                     KakaoUser();
                     dispatch(changeState());
                 },
