@@ -79,11 +79,11 @@ function NavbarLogin() {
             email,
         };
         process.env.NODE_ENV === 'production'
-            ? axios.post("http://localhost:8001/auth/login", request)
+            ? axios.post(process.env.REACT_APP_SERVER_HOST + "/auth/login", request)
                 .catch(function (error) {
                     console.log(error);
                 })
-            : axios.post(process.env.REACT_APP_SERVER_HOST + "/auth/login", request)
+            : axios.post("http://localhost:8001/auth/login", request)
                 .catch(function (error) {
                     console.log(error);
                 });
