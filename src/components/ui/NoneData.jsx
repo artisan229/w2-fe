@@ -5,7 +5,7 @@ const MessageContainer = styled.div`
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    height: 350px;
+    height: 400px;
 `;
 
 const MessageBox = styled.p`

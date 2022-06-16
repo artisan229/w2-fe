@@ -2,24 +2,29 @@ import styled from "styled-components"
 
 const FooterContainer = styled.div`
     background-color: #2b2b2b;
-    height: 150px;
+    height: 100px;
 `;
 
 const FooterBox = styled.div`
     width: 70%;
+    padding-top: 10px;
     color: grey;
     margin-left: auto;
     margin-right: auto;
+    font-size: small;
+    p {
+        margin-top: 5px;
+    }
 `;
 
 function Footer() {
     return (
         <FooterContainer>
             <FooterBox>
-                <span>Joodra | CEO. Hyunho Cho<br /></span>
-                <span>Tel. 010-4543-4731 | Email. pronce7@joodra.com<br />
-                    Address. Room 207, 45-9, Goryeodae-ro 26-gil, Seongbuk-gu, Seoul, Republic of Korea <br /></span>
-                <span>Copyright ⓒ 2021 Joodra All rights reserved.</span>
+                <span>(주)주드라 | 대표자: 조현호 | 사업자번호: 247-88-02468<br /></span>
+                <span>개인정보보호책임자: 강명균 | 이메일: pronce7@joodra.com<br />
+                주소: 서울특별시 성북구 고려대로26길 45-9, 207호<br /></span>
+                <p>ⓒJoodra. ALL RIGHTS RESERVED</p>
             </FooterBox>
         </FooterContainer>
     )
