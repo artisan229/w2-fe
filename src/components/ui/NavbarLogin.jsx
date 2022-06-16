@@ -83,7 +83,7 @@ function NavbarLogin() {
                 .catch(function (error) {
                     console.log(error);
                 })
-            : axios.post(REACT_APP_SERVER_HOST + "/auth/login", request)
+            : axios.post(process.env.REACT_APP_SERVER_HOST + "/auth/login", request)
                 .catch(function (error) {
                     console.log(error);
                 });
