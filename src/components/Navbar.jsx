@@ -31,6 +31,9 @@ const NavbarContainer = styled.div`
   Link, a:visited {
     color: white;
   }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const NavbarLeft = styled.div`

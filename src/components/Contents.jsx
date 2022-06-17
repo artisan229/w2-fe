@@ -16,6 +16,10 @@ const GridContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    @media screen and (max-width:768px) {
+        width: 300px;
+        grid-template-columns: 1fr 1fr;;
+    }
 `;
 
 function Contents(props) {

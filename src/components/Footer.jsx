@@ -3,6 +3,9 @@ import styled from "styled-components"
 const FooterContainer = styled.div`
     background-color: #2b2b2b;
     height: 100px;
+    @media screen and (max-width: 768px) {
+        height: 180px;
+    }
 `;
 
 const FooterBox = styled.div`

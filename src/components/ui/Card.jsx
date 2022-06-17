@@ -2,11 +2,16 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { useMediaQuery } from "react-responsive";
 
 const CardStyle = styled.div`
     width: 200px;
     height: 390px;
     margin: 30px;
+    @media screen and (max-width:768px) {
+        width: 100px;
+        height: auto;
+    }
 `;
 
 const Poster = styled.img`
@@ -14,6 +19,9 @@ const Poster = styled.img`
     &:hover {
         cursor: pointer;
         opacity: 0.6;
+    }
+    @media screen and (max-width:768px) {
+        border-radius: 15px;
     }
 `;
 
@@ -58,6 +66,9 @@ function Card(props) {
 
     const loginState = useSelector((state) => state.login);
     const formatDate = moment(props.date).format('YYYY년 M월 D일 개봉');
+    const isMobile = useMediaQuery({
+        query: '(max-width: 768px)',
+    });
 
     return (
         <CardStyle>
@@ -69,14 +80,18 @@ function Card(props) {
                         </Link>
                         : <Poster src={props.thumbnail} />
                 }
-                <InfoWrap>
-                    <Title>{props.title}</Title>
-                    <Info>{props.director}</Info>
-                    <Tag>{props.tag}</Tag>
-                    {/* <Wrap>
+                {
+                    isMobile
+                        ? null
+                        : <InfoWrap>
+                            <Title>{props.title}</Title>
+                            <Info>{props.director}</Info>
+                            <Tag>{props.tag}</Tag>
+                            {/* <Wrap>
                         <Uploaded>{formatDate}</Uploaded>
                     </Wrap> */}
-                </InfoWrap>
+                        </InfoWrap>
+                }
             </>
         </CardStyle>
     );
