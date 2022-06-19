@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeState, changeUser } from '../../store';
+import { IconContext } from 'react-icons/lib';
+import { IoPersonCircleOutline } from 'react-icons/io5'
+import { useMediaQuery } from 'react-responsive';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -53,6 +56,9 @@ function NavbarLogin() {
     const loginState = useSelector((state) => state.login);
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const isMobile = useMediaQuery({
+        query: '(max-width: 768px)',
+    });
 
     function KakaoUser() {
         window.Kakao.API.request({
@@ -123,14 +129,22 @@ function NavbarLogin() {
         <LoginContainer>
             {
                 loginState
-                    ? <>
-                        <Profile>
-                            <span>{userState.value.name}님 어서오세요</span>
-                            {/* <img src={userState.value.profile_img} alt='profile_image' /> */}
-                        </Profile>
-                        <Logout onClick={KakaoLogout}>로그아웃</Logout>
-                    </>
-                    : <Kakao onClick={KakaoLogin}>로그인</Kakao>
+                    ? isMobile
+                        ? <IconContext.Provider value={{ color: 'white', size: '22px' }}>
+                            <IoPersonCircleOutline />
+                        </IconContext.Provider>
+                        : <>
+                            <Profile>
+                                <span>{userState.value.name}님 어서오세요</span>
+                                {/* <img src={userState.value.profile_img} alt='profile_image' /> */}
+                            </Profile>
+                            <Logout onClick={KakaoLogout}>로그아웃</Logout>
+                        </>
+                    : isMobile
+                        ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
+                            <IoPersonCircleOutline />
+                        </IconContext.Provider>
+                        : <Kakao onClick={KakaoLogin}>로그인</Kakao>
             }
         </LoginContainer>
     );

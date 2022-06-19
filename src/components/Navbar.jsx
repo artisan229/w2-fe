@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLogin from './ui/NavbarLogin';
 import { useMediaQuery } from 'react-responsive';
-import { IconContext } from 'react-icons/lib';
-import { IoPersonCircleOutline } from 'react-icons/io5'
 
 const NavbarContainer = styled.div`
   position: sticky;
@@ -35,9 +33,9 @@ const NavbarContainer = styled.div`
     color: white;
   }
   @media screen and (max-width: 768px) {
-    height: 30px;
+    height: 44px;
     img {
-      height: 16px;
+      height: 18px;
     }
   }
 `;
@@ -91,11 +89,7 @@ function Navbar() {
             <NavbarCenter>
             </NavbarCenter>
             <NavbarRight>
-              <IconContext.Provider value={{ color: 'white', size: '20px' }} >
-                <IoPersonCircleOutline>
-                  <NavbarLogin />
-                </IoPersonCircleOutline>
-              </IconContext.Provider>
+              <NavbarLogin />
             </NavbarRight>
           </>
           : <>
