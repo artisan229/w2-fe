@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLogin from './ui/NavbarLogin';
 import { useMediaQuery } from 'react-responsive';
@@ -25,11 +25,11 @@ const NavbarContainer = styled.div`
       cursor: pointer;
     }
   }
-  Link, a {
+  a {
     color: white;
     text-decoration: none;
   }
-  Link, a:visited {
+  a:visited {
     color: white;
   }
   @media screen and (max-width: 768px) {
@@ -78,13 +78,15 @@ function Navbar() {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
+  const navigate = useNavigate();
+
   return (
     <NavbarContainer>
       {
         isMobile
           ? <>
             <NavbarLeft>
-              <Link to={"/"}><Logo src='willywood_white.png' /></Link>
+              <Logo src='willywood_white.png' onClick={()=>navigate(0)} />
             </NavbarLeft>
             <NavbarCenter>
             </NavbarCenter>
@@ -94,7 +96,7 @@ function Navbar() {
           </>
           : <>
             <NavbarLeft>
-              <Link to={"/"}><Logo src='willywood_white.png' /></Link>
+              <Logo src='willywood_white.png' onClick={()=>navigate(0)} />
             </NavbarLeft>
             {/* <NavbarCenter>
           <Link to={"/premium"}><Menu color='#f2e056'>프리미엄관</Menu></Link>
