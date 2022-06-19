@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLogin from './ui/NavbarLogin';
 import { useMediaQuery } from 'react-responsive';

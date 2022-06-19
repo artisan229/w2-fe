@@ -7,6 +7,10 @@ import '../components/watch.css';
 import { IconContext } from "react-icons";
 import { IoMdArrowBack } from "react-icons/io"
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import { useRef } from "react";
+import { useEffect } from "react";
+import screenfull from "screenfull";
 
 const WatchContainer = styled.div`
     background-color: black;
@@ -21,6 +25,10 @@ function Watch() {
     const navigate = useNavigate();
     let time = null;
     const [arrowColor, setArrowColor] = useState('white');
+    const isMobile = useMediaQuery({
+        query: '(max-width: 768px)',
+    });
+    const player = useRef(null);
 
     function changeArrowColor() {
         clearTimeout(time);
@@ -30,16 +38,27 @@ function Watch() {
         }, 3000);
     }
 
+    useEffect(() => {
+        if (screenfull.isEnabled && isMobile) {
+            screenfull.request(player.current.wrapper);
+        }
+    }, [])
+
     return (
         <WatchContainer onMouseMove={changeArrowColor}>
-            <IconContext.Provider value={{ color: arrowColor, size: '60px' }}>
-                <IoMdArrowBack style={{ cursor: "pointer" }} onClick={() => navigate(-1)} />
-            </IconContext.Provider>
+            {
+                isMobile
+                    ? null
+                    : <IconContext.Provider value={{ color: arrowColor, size: '60px' }}>
+                        <IoMdArrowBack style={{ cursor: "pointer" }} onClick={() => navigate(-1)} />
+                    </IconContext.Provider>
+            }
             {
                 context && context.map((src, idx) => {
                     return src.code === movie_id
                         ? <div key={idx} className="player-wrapper">
                             <ReactPlayer
+                                ref={player}
                                 config={{ file: { attributes: { controlsList: 'nodownload' } } }}
                                 className={"react-player"}
                                 url={src.movie}
@@ -47,6 +66,7 @@ function Watch() {
                                 controls={true}
                                 width='90vw'
                                 height='90vh'
+                                onEnded={() => navigate(-1)}
                             />
                         </div>
                         : null
