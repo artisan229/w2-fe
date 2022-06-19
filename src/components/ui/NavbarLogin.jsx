@@ -131,7 +131,7 @@ function NavbarLogin() {
                 loginState
                     ? isMobile
                         ? <IconContext.Provider value={{ color: 'white', size: '22px' }}>
-                            <IoPersonCircleOutline />
+                            <IoPersonCircleOutline onClick={KakaoLogout}/>
                         </IconContext.Provider>
                         : <>
                             <Profile>
@@ -142,7 +142,7 @@ function NavbarLogin() {
                         </>
                     : isMobile
                         ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
-                            <IoPersonCircleOutline />
+                            <IoPersonCircleOutline onClick={KakaoLogin}/>
                         </IconContext.Provider>
                         : <Kakao onClick={KakaoLogin}>로그인</Kakao>
             }
