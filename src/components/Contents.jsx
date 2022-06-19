@@ -13,23 +13,24 @@ const GridContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
+    margin-bottom: 300px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     @media screen and (max-width:768px) {
-        width: 300px;
-        grid-template-columns: 1fr 1fr;;
+        width: 90%;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 `;
 
 function Contents(props) {
     const context = useContext(BasicContext);
-    const result = context.filter(movie => props.type === '모든 영화' ? true : movie.tag.includes(props.type))
+    const result = context.filter(movie => props.type === 'ALL' ? true : movie.tag.includes(props.type))
         .filter(movie => props.search === null ? true : movie.title.includes(props.search) || movie.director.includes(props.search));
     return (
         <ContentsContainer>
             {
-                props.type !== '모든 영화' && result.length === 0
+                props.type !== 'ALL' && result.length === 0
                     ? <NoneData message={'해당 카테고리의 영화가 없습니다.'} />
                     : result.length === 0
                         ? <NoneData message={'검색되는 영화가 없습니다.'} />

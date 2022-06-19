@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLogin from './ui/NavbarLogin';
+import { useMediaQuery } from 'react-responsive';
+import { IconContext } from 'react-icons/lib';
+import { IoPersonCircleOutline } from 'react-icons/io5'
 
 const NavbarContainer = styled.div`
   position: sticky;
@@ -32,7 +35,10 @@ const NavbarContainer = styled.div`
     color: white;
   }
   @media screen and (max-width: 768px) {
-    flex-direction: column;
+    height: 30px;
+    img {
+      height: 16px;
+    }
   }
 `;
 
@@ -45,13 +51,16 @@ const Logo = styled.img`
   vertical-align: middle;
 `;
 
-// const NavbarCenter = styled.div`
-//   display: flex;
-//   align-items: center;
-//   p {
-//     margin: 10px;
-//   }
-// `;
+const NavbarCenter = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin: 10px;
+  }
+  @media screen and (max-width: 768px){
+    align-self: center;
+  }
+`;
 
 // const Menu = styled.p`
 //   color: ${props => props.color};
@@ -68,12 +77,32 @@ const NavbarRight = styled.div`
 `;
 
 function Navbar() {
+  const isMobile = useMediaQuery({
+    query: '(max-width: 768px)',
+  });
   return (
     <NavbarContainer>
-      <NavbarLeft>
-        <Link to={"/"}><Logo src='willywood_white.png' /></Link>
-      </NavbarLeft>
-      {/* <NavbarCenter>
+      {
+        isMobile
+          ? <>
+            <NavbarLeft>
+              <Link to={"/"}><Logo src='willywood_white.png' /></Link>
+            </NavbarLeft>
+            <NavbarCenter>
+            </NavbarCenter>
+            <NavbarRight>
+              <IconContext.Provider value={{ color: 'white', size: '20px' }} >
+                <IoPersonCircleOutline>
+                  <NavbarLogin />
+                </IoPersonCircleOutline>
+              </IconContext.Provider>
+            </NavbarRight>
+          </>
+          : <>
+            <NavbarLeft>
+              <Link to={"/"}><Logo src='willywood_white.png' /></Link>
+            </NavbarLeft>
+            {/* <NavbarCenter>
           <Link to={"/premium"}><Menu color='#f2e056'>프리미엄관</Menu></Link>
           <Link to={"/category"}><Menu>카테고리</Menu></Link>
           <Link to={"/upload"}><Menu>작품 업로드</Menu></Link>
@@ -81,9 +110,11 @@ function Navbar() {
           <Link to={"/support"}><Menu>고객센터</Menu></Link>
           <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
         </NavbarCenter> */}
-      <NavbarRight>
-        <NavbarLogin />
-      </NavbarRight>
+            <NavbarRight>
+              <NavbarLogin />
+            </NavbarRight>
+          </>
+      }
     </NavbarContainer>
   );
 }

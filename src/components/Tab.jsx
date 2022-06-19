@@ -28,6 +28,7 @@ const TabRow = styled.div`
     }
     @media screen and (max-width:768px){
         width: 80%;
+        margin-bottom: 15px;
     }
 `;
 
@@ -50,10 +51,10 @@ const TabButton = styled.button`
 `;
 
 function Tab() {
-    const [tab, setTab] = useState('모든 영화');
-    const [flag, setFlag] = useState('모든 영화');
+    const [tab, setTab] = useState('ALL');
+    const [flag, setFlag] = useState('ALL');
     const [search, setSearch] = useState(null);
-    const category = ['모든 영화', '액션', '로맨스', '판타지', '회사', '모험', '재난', '스릴러', '공포', '청춘', '코미디', '가족', '드라마', '다큐멘터리', '일상'];
+    const category = ['ALL', '액션', '로맨스', '판타지', '회사', '모험', '사회문제', '스릴러', '공포', '청춘', '코미디', '가족', '드라마', '다큐', '일상'];
 
     function changeFlag(src) {
         setFlag(src);

@@ -5,23 +5,21 @@ import moment from "moment";
 import { useMediaQuery } from "react-responsive";
 
 const CardStyle = styled.div`
-    width: 200px;
-    height: 390px;
+    width: 90%;
+    height: auto;
     margin: 30px;
     @media screen and (max-width:768px) {
-        width: 100px;
         height: auto;
+        margin: 0 auto 10px auto;
     }
 `;
 
 const Poster = styled.img`
     width: 100%;
+    border-radius: 7px;
     &:hover {
         cursor: pointer;
         opacity: 0.6;
-    }
-    @media screen and (max-width:768px) {
-        border-radius: 15px;
     }
 `;
 

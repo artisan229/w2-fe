@@ -3,13 +3,14 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { IconContext } from "react-icons/lib";
 import { useState } from "react";
 
-const SearchContainer = styled.div`
-    justify-content: center;
-`;
-
 const SearchBarContainer = styled.div`
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: center;
+    @media screen and (max-width: 768px){
+        width: 80%;
+    }
 `;
 
 const SearchBar = styled.input`
@@ -42,29 +43,27 @@ const SubmitBtn = styled.button`
 function Search(props) {
     const [query, setQuery] = useState(null);
     return (
-        <SearchContainer>
-            <SearchBarContainer>
-                <SearchBar placeholder="제목, 감독을 검색해보세요"
-                    onChange={(e) => {
-                        if (e.target.value === "" || e.target.value === " ") {
-                            setQuery(null);
-                            props.setSearch(null);
-                        } else {
-                            setQuery(e.target.value)
-                        }
-                    }}
-                    onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                            props.setSearch(query);
-                        }
-                    }} />
-                <IconContext.Provider value={{ color: 'white', size: '20px' }}>
-                    <SubmitBtn>
-                        <AiOutlineSearch onClick={() => props.setSearch(query)}/>
-                    </SubmitBtn>
-                </IconContext.Provider>
-            </SearchBarContainer>
-        </SearchContainer>
+        <SearchBarContainer>
+            <SearchBar placeholder="제목, 감독을 검색해보세요"
+                onChange={(e) => {
+                    if (e.target.value === "" || e.target.value === " ") {
+                        setQuery(null);
+                        props.setSearch(null);
+                    } else {
+                        setQuery(e.target.value)
+                    }
+                }}
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                        props.setSearch(query);
+                    }
+                }} />
+            <IconContext.Provider value={{ color: 'white', size: '20px' }}>
+                <SubmitBtn>
+                    <AiOutlineSearch onClick={() => props.setSearch(query)} />
+                </SubmitBtn>
+            </IconContext.Provider>
+        </SearchBarContainer>
     );
 }
 
