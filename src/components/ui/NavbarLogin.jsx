@@ -62,7 +62,7 @@ function NavbarLogin() {
     });
 
     useEffect(() => {
-        if (localStorage.getItem('user') !== null) {
+        if (localStorage.getItem('user') !== null && loginState === false) {
             let user = JSON.parse(localStorage.getItem('user'));
             dispatch(changeUser({ name: user.nick, email: user.email, profile_img: user.profile_img }));
             dispatch(changeState());
