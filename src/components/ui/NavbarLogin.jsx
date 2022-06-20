@@ -5,6 +5,7 @@ import { changeState, changeUser } from '../../store';
 import { IconContext } from 'react-icons/lib';
 import { IoPersonCircleOutline } from 'react-icons/io5'
 import { useMediaQuery } from 'react-responsive';
+import { useEffect } from 'react';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -60,6 +61,14 @@ function NavbarLogin() {
         query: '(max-width: 768px)',
     });
 
+    useEffect(() => {
+        if (localStorage.getItem('user') !== null) {
+            let user = JSON.parse(localStorage.getItem('user'));
+            dispatch(changeUser({ name: user.nick, email: user.email, profile_img: user.profile_img }));
+            dispatch(changeState());
+        }
+    }, [])
+
     function KakaoUser() {
         window.Kakao.API.request({
             url: '/v2/user/me',
@@ -84,6 +93,11 @@ function NavbarLogin() {
             nick,
             email,
         };
+        let user = {
+            nick,
+            email,
+            profile_img
+        }
         process.env.NODE_ENV === 'production'
             ? axios.post(process.env.REACT_APP_SERVER_HOST + "/auth/login", request)
                 .catch(function (error) {
@@ -93,12 +107,29 @@ function NavbarLogin() {
                 .catch(function (error) {
                     console.log(error);
                 });
+        localStorage.setItem('user', JSON.stringify(user));
         dispatch(changeUser({ name: nick, email: email, profile_img: profile_img }));
     }
 
     function KakaoLogin() {
-        if (!window.Kakao.isInitialized()) {
+        if (localStorage.getItem('user') !== null) {
+            let user = localStorage.getItem('user');
+            dispatch(changeUser({ name: user.nick, email: user.email, profile_img: user.profile_img }));
+            dispatch(changeState());
+        } else if (!window.Kakao.isInitialized()) {
             window.Kakao.init('2d060ab397b864200d0110666e2732ec');
+            window.Kakao.Auth.login({
+                success: function (response) {
+                    window.Kakao.Auth.setAccessToken(response.access_token);
+                    // console.log(`is set?: ${window.Kakao.Auth.getAccessToken()}`);
+                    KakaoUser();
+                    dispatch(changeState());
+                },
+                fail: function (error) {
+                    console.log(error);
+                }
+            });
+        } else {
             window.Kakao.Auth.login({
                 success: function (response) {
                     window.Kakao.Auth.setAccessToken(response.access_token);
@@ -114,7 +145,11 @@ function NavbarLogin() {
     }
 
     function KakaoLogout() {
-        if (!window.Kakao.Auth.getAccessToken()) {
+        if (localStorage.getItem('user') !== null) {
+            localStorage.removeItem('user');
+            dispatch(changeState());
+            window.location.reload();
+        } else if (!window.Kakao.Auth.getAccessToken()) {
             console.log('Not logged in.');
             return;
         }
@@ -131,7 +166,7 @@ function NavbarLogin() {
                 loginState
                     ? isMobile
                         ? <IconContext.Provider value={{ color: 'white', size: '22px' }}>
-                            <IoPersonCircleOutline onClick={KakaoLogout}/>
+                            <IoPersonCircleOutline onClick={KakaoLogout} />
                         </IconContext.Provider>
                         : <>
                             <Profile>
@@ -142,7 +177,7 @@ function NavbarLogin() {
                         </>
                     : isMobile
                         ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
-                            <IoPersonCircleOutline onClick={KakaoLogin}/>
+                            <IoPersonCircleOutline onClick={KakaoLogin} />
                         </IconContext.Provider>
                         : <Kakao onClick={KakaoLogin}>로그인</Kakao>
             }
