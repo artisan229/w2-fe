@@ -47,6 +47,9 @@ const NavbarLeft = styled.div`
 const Logo = styled.img`
   margin: 10px;
   vertical-align: middle;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const NavbarCenter = styled.div`
@@ -86,7 +89,7 @@ function Navbar() {
         isMobile
           ? <>
             <NavbarLeft>
-              <Logo src='willywood_white.png' onClick={()=>navigate(0)} />
+              <Logo src='willywood_white.png' onClick={() => window.location.pathname === "/" ? navigate(0) : navigate(-1)} />
             </NavbarLeft>
             <NavbarCenter>
             </NavbarCenter>
@@ -96,7 +99,7 @@ function Navbar() {
           </>
           : <>
             <NavbarLeft>
-              <Logo src='willywood_white.png' onClick={()=>navigate(0)} />
+              <Logo src='willywood_white.png' onClick={() => window.location.pathname === "/" ? navigate(0) : navigate(-1)} />
             </NavbarLeft>
             {/* <NavbarCenter>
           <Link to={"/premium"}><Menu color='#f2e056'>프리미엄관</Menu></Link>
