@@ -1,4 +1,4 @@
-import Info from '../components/Info';
+// import Info from '../components/Info';
 import Navbar from '../components/Navbar';
 import Main from '../components/ui/Main';
 import Tab from '../components/Tab';
@@ -14,7 +14,7 @@ function Challenge() {
   return (
     <BasicContainer>
       <BasicProvider>
-        <Info />
+        {/* <Info /> */}
         <Navbar />
         <Main />
         <Tab />
