@@ -33,7 +33,7 @@ const TabRow = styled.div`
 `;
 
 const TabButton = styled.button`
-    background-color: black;
+    background-color: #111111;
     color: ${(props) => props.color};
     font-size: large;
     width: 20%;

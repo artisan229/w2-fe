@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import styled from "styled-components";
 
 const Main = styled.div`
-    background-color: black;
+    background-color: #111111;
     color: rgba(255,255,255, 0.92);
     padding-top: 30px;
     margin-left: auto;

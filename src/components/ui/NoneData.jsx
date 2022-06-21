@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const MessageContainer = styled.div`
-    background-color: black;
+    background-color: #111111;
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
@@ -10,7 +10,7 @@ const MessageContainer = styled.div`
 
 const MessageBox = styled.p`
     color: white;
-    background-color: black;
+    background-color: #111111;
     font-size: large;
     font-weight: 300;
     text-align: center;
