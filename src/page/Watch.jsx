@@ -72,6 +72,13 @@ function Watch() {
                         : null
                 })
             }
+            {
+                isMobile
+                    ? null
+                    : <IconContext.Provider value={{ color: 'black', size: '60px' }}>
+                        <IoMdArrowBack />
+                    </IconContext.Provider>
+            }
         </WatchContainer>
     );
 }
