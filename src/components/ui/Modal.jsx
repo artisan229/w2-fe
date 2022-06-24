@@ -119,9 +119,9 @@ function Modal(props) {
                     <Right>
                         <Head>
                             <h2>{movieData.title}</h2>
-                            <p>9분</p>
+                            <p>{movieData.running_time}분</p>
                         </Head>
-                        <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category} | 태그</p>
+                        <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category} | {movieData.tag}</p>
                         <p style={{ fontSize: '16px', color: 'grey', marginTop: '5px', marginBottom: '20px' }}>{movieData.director} 감독</p>
                         <span style={{ fontSize: '16px', color: 'grey' }}>{movieData.about}</span>
                     </Right>

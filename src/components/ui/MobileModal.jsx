@@ -112,11 +112,11 @@ function MobileModal(props) {
                 <Body>
                     <Head>
                         <h2>{movieData.title}</h2>
-                        <p>9분</p>
+                        <p>{movieData.running_time}분</p>
                     </Head>
                     <p style={{ fontSize: '16px', color: 'grey', marginTop: '5px', marginBottom: '20px' }}>{movieData.director} 감독</p>
                     <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category}</p>
-                    <p style={{ fontSize: '20px', color: 'grey', marginTop: '5px', marginBottom: '0px' }}>태그</p>
+                    <p style={{ fontSize: '20px', color: 'grey', marginTop: '5px', marginBottom: '0px' }}>{movieData.tag}</p>
                     <span style={{ fontSize: '16px', color: 'grey', padding: '20px', display: 'inline-block' }}>{movieData.about}</span>
                     <Link style={{textDecoration: 'none'}} to={`/watch/${movieData.code}`} onClick={() => {
                             document.body.style.overflow = "unset"
