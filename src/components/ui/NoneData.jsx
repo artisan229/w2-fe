@@ -12,7 +12,7 @@ const MessageBox = styled.p`
     color: white;
     background-color: #111111;
     font-size: large;
-    font-weight: 300;
+    font-weight: 200;
     text-align: center;
 `;
 
