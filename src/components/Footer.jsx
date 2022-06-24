@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const FooterContainer = styled.div`
     background-color: #2b2b2b;
-    height: 120px;
+    height: 150px;
     @media screen and (max-width: 768px) {
         height: 180px;
     }

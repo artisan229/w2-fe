@@ -11,6 +11,7 @@ const Main = styled.div`
     text-align: start;
     h1, h2, h3, h4, h5, h6 {
         margin: 0;
+        font-weight: 300;
     }
     hr {
         margin-top: 50px;
