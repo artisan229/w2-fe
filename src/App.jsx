@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Basic from './page/Basic';
 import Watch from './page/Watch';
-import Login from './page/Login';
 import Policy from './page/Policy';
 import PlayerProvider from './provider/PlayerProvider';
 
@@ -16,7 +15,6 @@ function App() {
             <Route path="/watch">
               <Route path=":id" element={<Watch />} />
             </Route>
-            <Route path='/welcome' element={<Login />} />
             <Route path="/policy" element={<Policy />} />
           </Routes>
         </BrowserRouter>
