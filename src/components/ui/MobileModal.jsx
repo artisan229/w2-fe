@@ -118,10 +118,10 @@ function MobileModal(props) {
                     <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category}</p>
                     <p style={{ fontSize: '20px', color: 'grey', marginTop: '5px', marginBottom: '0px' }}>{movieData.tag}</p>
                     <span style={{ fontSize: '16px', color: 'grey', padding: '20px', display: 'inline-block' }}>{movieData.about}</span>
-                    <Link style={{textDecoration: 'none'}} to={`/watch/${movieData.code}`} onClick={() => {
-                            document.body.style.overflow = "unset"
-                            dispatch(changeInfo(0))
-                        }}>
+                    <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
+                        document.body.style.overflow = "unset"
+                        dispatch(changeInfo(0))
+                    }}>
                         <Play>
                             <IconContext.Provider value={{ color: 'black', size: '20px' }} >
                                 <FaPlay />

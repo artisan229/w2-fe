@@ -77,7 +77,11 @@ function Card(props) {
     return (
         <CardStyle>
             <>
-                <Poster src={props.movie.poster} onClick={()=>dispatch(changeInfo(props.movie.code))}/>
+            {
+                loginState
+                ? <Poster src={props.movie.poster} onClick={()=>dispatch(changeInfo(props.movie.code))}/>
+                : <Poster src={props.movie.poster} />
+            }
                 {
                     isMobile
                         ? null
