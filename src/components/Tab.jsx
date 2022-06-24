@@ -35,7 +35,9 @@ const TabRow = styled.div`
 const TabButton = styled.button`
     background-color: #111111;
     color: ${(props) => props.color};
+    font-family: 'Noto Sans KR';
     font-size: large;
+    font-weight: 100;
     width: 20%;
     border: none;
     &:hover {

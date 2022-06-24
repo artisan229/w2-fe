@@ -17,6 +17,7 @@ const GridContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
     @media screen and (max-width:768px) {
         width: 90%;
         grid-template-columns: 1fr 1fr 1fr;
@@ -37,7 +38,7 @@ function Contents(props) {
                         : <GridContainer>
                             {
                                 result.map((movie, idx) => {
-                                    return <Card key={idx} thumbnail={movie.thumbnail} title={movie.title} director={movie.director} tag={movie.tag} date={movie.date} id={movie.code} />
+                                    return <Card key={idx} movie={movie} />
                                 })
                             }
                         </GridContainer>

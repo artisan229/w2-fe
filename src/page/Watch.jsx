@@ -56,10 +56,14 @@ function Watch() {
             {
                 context && context.map((src, idx) => {
                     return src.code === movie_id
-                        ? <div key={idx} className="player-wrapper">
+                        ? <div key={idx} className="player-wrapper" >
                             <ReactPlayer
                                 ref={player}
-                                config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+                                config={{ file: 
+                                    { attributes: 
+                                        { 
+                                            controlsList: 'nodownload'
+                                        } } }}
                                 className={"react-player"}
                                 url={src.movie}
                                 playing={true}
