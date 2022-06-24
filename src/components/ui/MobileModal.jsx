@@ -62,7 +62,7 @@ const Head = styled.div`
     align-items: baseline;
     h2 {
         margin: 0;
-        font-size: 48px;
+        font-size: 32px;
         font-weight: 200;
     }
     p {
