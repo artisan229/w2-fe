@@ -4,6 +4,7 @@ import { CgClose } from "react-icons/cg"
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { changeInfo } from "../../store";
+import { Link } from "react-router-dom";
 
 const Background = styled.div`
     width: 100%;
@@ -103,12 +104,17 @@ function Modal(props) {
                 <Section>
                     <Left>
                         <Poster src={movieData.poster} alt="poster" />
-                        <Play>
-                            <IconContext.Provider value={{ color: 'black', size: '20px' }} >
-                                <FaPlay />
-                            </IconContext.Provider>
-                            <h2 style={{margin: '0 0 0 10px', height: '18px', lineHeight: '24px'}}>재생</h2>
-                        </Play>
+                        <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
+                            document.body.style.overflow = "unset"
+                            dispatch(changeInfo(0))
+                        }}>
+                            <Play>
+                                <IconContext.Provider value={{ color: 'black', size: '20px' }} >
+                                    <FaPlay />
+                                </IconContext.Provider>
+                                <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
+                            </Play>
+                        </Link>
                     </Left>
                     <Right>
                         <Head>
@@ -121,7 +127,7 @@ function Modal(props) {
                     </Right>
                 </Section>
             </ModalContainer>
-        </Background>
+        </Background >
     );
 }
 

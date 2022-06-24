@@ -4,6 +4,7 @@ import { FaPlay } from "react-icons/fa";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { changeInfo } from "../../store";
+import { Link } from "react-router-dom";
 
 const Background = styled.div`
     width: 100%;
@@ -117,12 +118,17 @@ function MobileModal(props) {
                     <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category}</p>
                     <p style={{ fontSize: '20px', color: 'grey', marginTop: '5px', marginBottom: '0px' }}>태그</p>
                     <span style={{ fontSize: '16px', color: 'grey', padding: '20px', display: 'inline-block' }}>{movieData.about}</span>
-                    <Play>
-                        <IconContext.Provider value={{ color: 'black', size: '20px' }} >
-                            <FaPlay />
-                            <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
-                        </IconContext.Provider>
-                    </Play>
+                    <Link style={{textDecoration: 'none'}} to={`/watch/${movieData.code}`} onClick={() => {
+                            document.body.style.overflow = "unset"
+                            dispatch(changeInfo(0))
+                        }}>
+                        <Play>
+                            <IconContext.Provider value={{ color: 'black', size: '20px' }} >
+                                <FaPlay />
+                                <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
+                            </IconContext.Provider>
+                        </Play>
+                    </Link>
                 </Body>
             </ModalContainer>
         </Background>
