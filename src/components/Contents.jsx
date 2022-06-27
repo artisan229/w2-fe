@@ -26,7 +26,7 @@ const GridContainer = styled.div`
 
 function Contents(props) {
     const context = useContext(BasicContext);
-    const result = context.filter(movie => props.type === 'ALL' ? true : movie.tag.includes(props.type))
+    const result = context.filter(movie => props.type === 'ALL' ? true : movie.category.includes(props.type))
         .filter(movie => props.search === null ? true : movie.title.includes(props.search) || movie.director.includes(props.search));
     return (
         <ContentsContainer>
