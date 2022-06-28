@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Basic from './page/Basic';
+import Info from './components/Info';
 import Watch from './page/Watch';
 import Policy from './page/Policy';
 import Login from './page/Login';
@@ -10,16 +11,16 @@ function App() {
   return (
     <>
       <PlayerProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Basic />} />
-            <Route path="/watch">
-              <Route path=":id" element={<Watch />} />
-            </Route>
-            <Route path="/policy" element={<Policy />} />
-            <Route path="/welcome" element={<Login />} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Basic />}>
+            <Route path=":id" element={<Info />} />
+          </Route>
+          <Route path="/watch">
+            <Route path=":id" element={<Watch />} />
+          </Route>
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/welcome" element={<Login />} />
+        </Routes>
       </PlayerProvider>
     </>
   );

@@ -24,24 +24,9 @@ const user = createSlice({
 
 export const { changeUser } = user.actions;
 
-const modal = createSlice({
-    name: 'modal',
-    initialState: {
-        value: 0,
-    },
-    reducers: {
-        changeInfo(state, action) {
-            state.value = action.payload;
-        }
-    }
-})
-
-export const {changeInfo} = modal.actions;
-
 export default configureStore({
     reducer: {
         login: login.reducer,
         user: user.reducer,
-        modal: modal.reducer,
     }
 })

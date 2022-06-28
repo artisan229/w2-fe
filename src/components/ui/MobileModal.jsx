@@ -2,16 +2,15 @@ import { IconContext } from "react-icons/lib";
 import { CgClose } from "react-icons/cg";
 import { FaPlay } from "react-icons/fa";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { changeInfo } from "../../store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Background = styled.div`
     width: 100%;
     height: 100%;
     top: -50px;
     background-image: url(${props => props.img});
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     position: fixed;
     z-index: 4;
@@ -26,6 +25,7 @@ const ModalContainer = styled.div`
     position: fixed;
     z-index: 5;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 `;
 
 const Nav = styled.div`
@@ -50,7 +50,7 @@ const Body = styled.div`
     position: fixed;
     top: 250px;
     border-radius: 20px 20px 0px 0px;
-    background-color: #2b2b2b;
+    background-color: #1a1a1a;
     color: white;
     text-align: center;
 `;
@@ -95,8 +95,9 @@ const Play = styled.button`
 `;
 
 function MobileModal(props) {
-    const dispatch = useDispatch();
     const movieData = props.data;
+    const loginState = useSelector(state => state.login);
+    const navigate = useNavigate();
     return (
         <Background img={movieData.poster}>
             <ModalContainer>
@@ -104,7 +105,7 @@ function MobileModal(props) {
                     <IconContext.Provider value={{ color: '#585858', size: '30px' }}>
                         <CgClose onClick={() => {
                             document.body.style.overflow = "unset"
-                            dispatch(changeInfo(0))
+                            navigate('/');
                         }} />
                     </IconContext.Provider>
                 </Nav>
@@ -118,17 +119,21 @@ function MobileModal(props) {
                     <p style={{ fontSize: '20px', marginTop: '5px', marginBottom: '0px' }}>{movieData.category}</p>
                     <p style={{ fontSize: '20px', color: 'grey', marginTop: '5px', marginBottom: '0px' }}>{movieData.tag}</p>
                     <span style={{ fontSize: '16px', color: 'grey', padding: '20px', display: 'inline-block' }}>{movieData.about}</span>
-                    <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
-                        document.body.style.overflow = "unset"
-                        dispatch(changeInfo(0))
-                    }}>
-                        <Play>
-                            <IconContext.Provider value={{ color: 'black', size: '20px' }} >
-                                <FaPlay />
-                                <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
-                            </IconContext.Provider>
-                        </Play>
-                    </Link>
+                    {
+                        loginState
+                            ? <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
+                                document.body.style.overflow = "unset"
+                            }}>
+                                <Play>
+                                    <IconContext.Provider value={{ color: 'black', size: '20px' }} >
+                                        <FaPlay />
+                                        <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
+                                    </IconContext.Provider>
+                                </Play>
+                            </Link>
+                            : <img src="kakao_login.png" onClick={()=>{navigate('/welcome')}} />
+
+                    }
                 </Body>
             </ModalContainer>
         </Background>

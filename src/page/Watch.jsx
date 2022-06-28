@@ -50,7 +50,7 @@ function Watch() {
                 isMobile
                     ? null
                     : <IconContext.Provider value={{ color: arrowColor, size: '60px' }}>
-                        <IoMdArrowBack style={{ cursor: "pointer" }} onClick={() => navigate(-1)} />
+                        <IoMdArrowBack style={{ cursor: "pointer" }} onClick={() => navigate(-2)} />
                     </IconContext.Provider>
             }
             {
@@ -70,7 +70,7 @@ function Watch() {
                                 controls={true}
                                 width='90vw'
                                 height='90vh'
-                                onEnded={() => navigate(-1)}
+                                onEnded={() => navigate(-2)}
                             />
                         </div>
                         : null

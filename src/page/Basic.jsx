@@ -5,17 +5,18 @@ import Tab from '../components/Tab';
 import styled from 'styled-components';
 import BasicProvider from '../provider/BasicProvider';
 import Footer from '../components/Footer';
+import { Outlet } from 'react-router-dom';
 
 const BasicContainer = styled.div`
   background: #111111;
 `;
 
-function Challenge() {
+function Basic() {
   return (
     <BasicContainer>
       <BasicProvider>
-        <Info />  
-        <Navbar displayLogin={true}/>
+        <Outlet />
+        <Navbar displayLogin={true} />
         <Main />
         <Tab />
         <Footer />
@@ -24,4 +25,4 @@ function Challenge() {
   );
 }
 
-export default Challenge;
+export default Basic;

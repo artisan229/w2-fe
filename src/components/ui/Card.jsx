@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { changeInfo } from "../../store";
+import { Link } from "react-router-dom";
 
 const CardStyle = styled.div`
     width: 90%;
@@ -45,19 +44,7 @@ const Info = styled.p`
     font-weight: 400;
 `;
 
-const Wrap = styled.div`
-    display: flex;
-    justify-content: space-between;
-`;
-
 const Category = styled.p`
-    margin: 5 0 0 0;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-`;
-
-const Uploaded = styled.p`
     margin: 5 0 0 0;
     color: white;
     font-size: 14px;
@@ -68,12 +55,13 @@ function Card(props) {
     const isMobile = useMediaQuery({
         query: '(max-width: 768px)',
     });
-    const dispatch = useDispatch();
 
     return (
         <CardStyle>
             <>
-                <Poster src={props.movie.poster} onClick={() => dispatch(changeInfo(props.movie.code))} />
+                <Link to={`/${props.movie.code}`}>
+                    <Poster src={props.movie.poster} />
+                </Link>
                 {
                     isMobile
                         ? null

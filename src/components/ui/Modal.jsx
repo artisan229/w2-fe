@@ -1,10 +1,9 @@
 import { IconContext } from "react-icons/lib";
 import { FaPlay } from "react-icons/fa";
 import { CgClose } from "react-icons/cg"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { changeInfo } from "../../store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Background = styled.div`
     width: 100%;
@@ -21,7 +20,7 @@ const ModalContainer = styled.div`
     margin-bottom: 80px;
     margin-left: auto;
     margin-right: auto;
-    background: #2b2b2b;
+    background: #1a1a1a;
     border-radius: 8px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -37,10 +36,12 @@ const Nav = styled.div`
 const Section = styled.div`
     display: flex;
     justify-content: start;
+    gap: 20px;
 `;
 
 const Left = styled.div`
     width: 33%;
+    text-align: center;
 `;
 
 const Poster = styled.img`
@@ -87,10 +88,15 @@ const Head = styled.div`
     }
 `;
 
+const Kakao = styled.img`
+
+    padding: 10px;
+`;
+
 function Modal(props) {
     const loginState = useSelector(state => state.login);
-    const dispatch = useDispatch();
     const movieData = props.data;
+    const navigate = useNavigate();
     return (
         <Background>
             <ModalContainer>
@@ -98,7 +104,7 @@ function Modal(props) {
                     <IconContext.Provider value={{ color: '#585858', size: '30px' }}>
                         <CgClose style={{ cursor: 'pointer' }} onClick={() => {
                             document.body.style.overflow = "unset"
-                            dispatch(changeInfo(0))
+                            navigate('/');
                         }} />
                     </IconContext.Provider>
                 </Nav>
@@ -109,7 +115,6 @@ function Modal(props) {
                             loginState
                                 ? <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
                                     document.body.style.overflow = "unset"
-                                    dispatch(changeInfo(0))
                                 }}>
                                     <Play>
                                         <IconContext.Provider value={{ color: 'black', size: '20px' }} >
@@ -118,8 +123,8 @@ function Modal(props) {
                                         <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
                                     </Play>
                                 </Link>
-                                : <Link to={`/welcome`}>
-                                    <img src="kakao_login.png" />
+                                : <Link to={'/welcome'}>
+                                    <Kakao src="kakao_login.png" alt="kakao_login"/>
                                 </Link>
                         }
                     </Left>
