@@ -10,10 +10,15 @@ import { useEffect } from 'react';
 const LoginContainer = styled.div`
     display: flex;
     align-items: center;
-    padding: 10px;
 `;
 
-const Kakao = styled.img`
+const Kakao = styled.p`
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: small;
+    font-weight: 500;
     align-items: center;
     &:hover {
         cursor: pointer;
@@ -177,7 +182,7 @@ function NavbarLogin() {
                         ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
                             <IoPersonCircleOutline onClick={KakaoLogin} />
                         </IconContext.Provider>
-                        : <Kakao src='kakao_login.png' onClick={KakaoLogin} />
+                        : <Kakao src='kakao_login.png' onClick={KakaoLogin}>카카오 로그인</Kakao>
             }
         </LoginContainer>
     );

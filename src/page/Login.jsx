@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import axios from "axios";
-import { changeUser, changeState, changeInfo } from "../store";
+import { changeUser, changeState } from "../store";
 import { useNavigate } from "react-router-dom";
 
 const LoginContainer = styled.div`
@@ -24,6 +24,9 @@ const Wrap = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 48px;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 const Welcome = styled.div`
@@ -40,9 +43,6 @@ const LoginImg = styled.img`
 function Login() {
     const loginState = useSelector((state) => state.login);
     const dispatch = useDispatch();
-    const isMobile = useMediaQuery({
-        query: '(max-width: 768px)',
-    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -136,13 +136,12 @@ function Login() {
                         <h1>환영합니다!</h1>
                         <LoginImg src="kakao_login.png" onClick={()=>{
                             KakaoLogin();
-                            dispatch(changeInfo(0))
                             navigate('/');
                         }} />
                         <p>새로운 영화 시장을 만들어가는 차세대 OTT 서비스 윌리우드입니다.</p>
                     </Welcome>
                     <div>
-                        <img style={{width: '50%'}} src="camera.jpg" />
+                        <img style={{width: '50%'}} src="camera.jpg" alt="camera.jpg" />
                     </div>
                 </Wrap>
             </LoginContainer>

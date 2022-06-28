@@ -71,7 +71,7 @@ const NavbarRight = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
-  p {
+  img {
     margin: 5px;
     align-items: center;
   }
