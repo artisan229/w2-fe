@@ -11,7 +11,7 @@ const Background = styled.div`
     height: 100%;
     top: -50px;
     background-image: url(${props => props.img});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
     z-index: 4;
