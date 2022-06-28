@@ -1,7 +1,7 @@
 import { IconContext } from "react-icons/lib";
 import { FaPlay } from "react-icons/fa";
 import { CgClose } from "react-icons/cg"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { changeInfo } from "../../store";
 import { Link } from "react-router-dom";
@@ -88,6 +88,7 @@ const Head = styled.div`
 `;
 
 function Modal(props) {
+    const loginState = useSelector(state => state.login);
     const dispatch = useDispatch();
     const movieData = props.data;
     return (
@@ -104,17 +105,23 @@ function Modal(props) {
                 <Section>
                     <Left>
                         <Poster src={movieData.poster} alt="poster" />
-                        <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
-                            document.body.style.overflow = "unset"
-                            dispatch(changeInfo(0))
-                        }}>
-                            <Play>
-                                <IconContext.Provider value={{ color: 'black', size: '20px' }} >
-                                    <FaPlay />
-                                </IconContext.Provider>
-                                <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
-                            </Play>
-                        </Link>
+                        {
+                            loginState
+                                ? <Link style={{ textDecoration: 'none' }} to={`/watch/${movieData.code}`} onClick={() => {
+                                    document.body.style.overflow = "unset"
+                                    dispatch(changeInfo(0))
+                                }}>
+                                    <Play>
+                                        <IconContext.Provider value={{ color: 'black', size: '20px' }} >
+                                            <FaPlay />
+                                        </IconContext.Provider>
+                                        <h2 style={{ margin: '0 0 0 10px', height: '18px', lineHeight: '24px' }}>재생</h2>
+                                    </Play>
+                                </Link>
+                                : <Link to={`/welcome`}>
+                                    <img src="kakao_login.png" />
+                                </Link>
+                        }
                     </Left>
                     <Right>
                         <Head>

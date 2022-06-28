@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 import { useMediaQuery } from "react-responsive";
 import { changeInfo } from "../../store";
 
@@ -66,9 +65,6 @@ const Uploaded = styled.p`
 `;
 
 function Card(props) {
-
-    const loginState = useSelector((state) => state.login);
-    const formatDate = moment(props.movie.date).format('YYYY년 M월 D일 개봉');
     const isMobile = useMediaQuery({
         query: '(max-width: 768px)',
     });
@@ -77,11 +73,7 @@ function Card(props) {
     return (
         <CardStyle>
             <>
-            {
-                loginState
-                ? <Poster src={props.movie.poster} onClick={()=>dispatch(changeInfo(props.movie.code))}/>
-                : <Poster src={props.movie.poster} />
-            }
+                <Poster src={props.movie.poster} onClick={() => dispatch(changeInfo(props.movie.code))} />
                 {
                     isMobile
                         ? null

@@ -13,12 +13,11 @@ const LoginContainer = styled.div`
     padding: 10px;
 `;
 
-const Kakao = styled.button`
-    color: white;
-    background: yellow;
+const Kakao = styled.img`
     align-items: center;
-    padding: 10px;
-    font-size: medium;
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const Profile = styled.div`
@@ -47,7 +46,6 @@ const Profile = styled.div`
 
 const Logout = styled.button`
     color: white;
-    background: yellow;
     align-items: center;
     padding: 10px;
     font-size: medium;
@@ -179,7 +177,7 @@ function NavbarLogin() {
                         ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
                             <IoPersonCircleOutline onClick={KakaoLogin} />
                         </IconContext.Provider>
-                        : <Kakao onClick={KakaoLogin}>로그인</Kakao>
+                        : <Kakao src='kakao_login.png' onClick={KakaoLogin} />
             }
         </LoginContainer>
     );
