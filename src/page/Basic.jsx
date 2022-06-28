@@ -15,7 +15,7 @@ function Challenge() {
     <BasicContainer>
       <BasicProvider>
         <Info />  
-        <Navbar />
+        <Navbar displayLogin={true}/>
         <Main />
         <Tab />
         <Footer />

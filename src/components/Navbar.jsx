@@ -77,7 +77,7 @@ const NavbarRight = styled.div`
   }
 `;
 
-function Navbar() {
+function Navbar(props) {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   });
@@ -110,7 +110,11 @@ function Navbar() {
           <a target="_blank" rel="noopener noreferrer" href={"http://www.joodra.com/"}>We will go Hollywood</a>
         </NavbarCenter> */}
             <NavbarRight>
-              <NavbarLogin />
+              {
+                props.displayLogin
+                ? <NavbarLogin />
+                : null
+              }
             </NavbarRight>
           </>
       }
