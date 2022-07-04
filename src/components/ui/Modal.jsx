@@ -41,7 +41,6 @@ const Section = styled.div`
 
 const Left = styled.div`
     width: 33%;
-    text-align: center;
 `;
 
 const Poster = styled.img`

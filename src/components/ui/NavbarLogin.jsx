@@ -12,12 +12,11 @@ const LoginContainer = styled.div`
     align-items: center;
 `;
 
-const Kakao = styled.p`
-    background-color: yellow;
-    color: black;
+const Kakao = styled.button`
+    color: white;
     padding: 10px;
     border-radius: 10px;
-    font-size: small;
+    font-size: medium;
     font-weight: 500;
     align-items: center;
     &:hover {
@@ -182,7 +181,7 @@ function NavbarLogin() {
                         ? <IconContext.Provider value={{ color: 'yellow', size: '22px' }}>
                             <IoPersonCircleOutline onClick={KakaoLogin} />
                         </IconContext.Provider>
-                        : <Kakao src='kakao_login.png' onClick={KakaoLogin}>카카오 로그인</Kakao>
+                        : <Kakao src='kakao_login.png' onClick={KakaoLogin}>로그인</Kakao>
             }
         </LoginContainer>
     );

@@ -44,6 +44,9 @@ function Login() {
     const loginState = useSelector((state) => state.login);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const isMobile = useMediaQuery({
+        query: '(max-width: 768px)',
+    });
 
     useEffect(() => {
         if (localStorage.getItem('user') !== null && loginState === false) {
@@ -134,15 +137,19 @@ function Login() {
                 <Wrap>
                     <Welcome>
                         <h1>환영합니다!</h1>
-                        <LoginImg src="kakao_login.png" onClick={()=>{
+                        <LoginImg src="kakao_login.png" onClick={() => {
                             KakaoLogin();
                             navigate('/');
                         }} />
                         <p>새로운 영화 시장을 만들어가는 차세대 OTT 서비스 윌리우드입니다.</p>
                     </Welcome>
-                    <div>
-                        <img style={{width: '50%'}} src="camera.jpg" alt="camera.jpg" />
-                    </div>
+                    {
+                        isMobile
+                            ? null
+                            : <div>
+                                <img style={{ width: '50%' }} src="camera.jpg" alt="camera.jpg" />
+                            </div>
+                    }
                 </Wrap>
             </LoginContainer>
             <Footer />
